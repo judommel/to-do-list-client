@@ -1,14 +1,108 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: Arial;
+  background-color: #f88379;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+.container {
+  margin: auto;
+  width: 1024;
+  background-color: #f87984;
+  text-align: center;
+}
+
+.status {
+  font-size: 35px;
+  margin: 10px 10px;
+}
+
+ul {
+  list-style: none;
+}
+
+div {
+  padding: 10px 0px;
+}
+
+li {
+  font-size: 30px;
+  line-height: 40px;
+}
+
+span {
+  margin: 20px;
+}
+
+.quantity {
+  font-weight: bold;
+}
+
+.count {
+  border: 2px solid black;
+  width: 50%;
+  margin: auto;
+  font-size: 20px;
+  background-color: #f88379;
+}
+
+.do-input {
+  width: 800px;
+  height: 45px;
+  font-size: 30px;
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+}
+
+.search-input {
+  width: 400px;
+  height: 35px;
+  font-size: 20px;
+  border-radius: 8px;
+  border: none;
+  padding: 10px;
+  margin: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+select {
+  height: 45px;
+  font-size: 25px;
+  padding: 10px;
+}
+
+button {
+  font-size: 25px;
+  height: 35px;
+  background-color: #f88379;
+  border-radius: 10px;
+  margin: 30px 10px;
+}
+
+.done {
+  text-decoration: line-through;
+}
+
+.undone {
+  text-decoration: none;
+}
+
+@keyframes transition {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+li {
+  opacity: 0;
+  animation: transition 0.3s ease-in 0.3s forwards;
+}
+
+.status {
+  opacity: 0;
+  animation: transition 0.3s ease-in 0.3s forwards;
 }
