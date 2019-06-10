@@ -1,18 +1,27 @@
+html {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: Arial;
-  background-color: #f88379;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
 }
 
 .container {
   margin: auto;
   width: 1024;
-  background-color: #f87984;
+  background-color: #ffffff;
   text-align: center;
+  padding: 0;
 }
 
-.status {
-  font-size: 35px;
-  margin: 10px 10px;
+header {
+  background-color: #f8f9fa;
+  display: flex;
+  justify-content: space-around;
 }
 
 ul {
@@ -37,11 +46,17 @@ span {
 }
 
 .count {
-  border: 2px solid black;
-  width: 50%;
-  margin: auto;
-  font-size: 20px;
-  background-color: #f88379;
+  font-size: 18px;
+}
+
+.red-cross {
+  color: red;
+  padding-right: 5px;
+}
+
+.green-check {
+  color: #6ac259;
+  padding-right: 5px;
 }
 
 .do-input {
@@ -49,7 +64,7 @@ span {
   height: 45px;
   font-size: 30px;
   border-radius: 10px;
-  border: none;
+  border: solid 2px #6ac259;
   padding: 10px;
 }
 
@@ -58,7 +73,7 @@ span {
   height: 35px;
   font-size: 20px;
   border-radius: 8px;
-  border: none;
+  border: solid 2px #6ac259;
   padding: 10px;
   margin: 20px;
 }
@@ -76,19 +91,34 @@ select {
 button {
   font-size: 25px;
   height: 35px;
-  background-color: #f88379;
-  border-radius: 10px;
-  margin: 30px 10px;
+  background-color: #6ac259;
+  border-radius: 15px;
+  margin: 10px 10px;
+  color: #ffffff;
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 .done {
   text-decoration: line-through;
 }
 
+.done:hover,
+.undone:hover {
+  cursor: pointer;
+}
+
 .undone {
   text-decoration: none;
 }
 
+.hide-done {
+  font-size: 12px;
+}
+
+/* if transitions wanted
 @keyframes transition {
   0% {
     opacity: 0;
@@ -97,6 +127,7 @@ button {
     opacity: 1;
   }
 }
+
 li {
   opacity: 0;
   animation: transition 0.3s ease-in 0.3s forwards;
@@ -105,4 +136,4 @@ li {
 .status {
   opacity: 0;
   animation: transition 0.3s ease-in 0.3s forwards;
-}
+} */
