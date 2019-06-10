@@ -14,6 +14,28 @@ class App extends React.Component {
     hideDones: false
   };
 
+  calculateToDo = () => {
+    let count = 0;
+
+    for (let i = 0; i < this.state.tasks.length; i++) {
+      if (this.state.tasks[i].done === false) {
+        count++;
+      }
+    }
+    return count;
+  };
+
+  calculateDone = () => {
+    let count = 0;
+
+    for (let i = 0; i < this.state.tasks.length; i++) {
+      if (this.state.tasks[i].done === true) {
+        count++;
+      }
+    }
+    return count;
+  };
+
   checkToDo = async index => {
     this.setState({ isLoading: true });
     await axios
@@ -34,7 +56,7 @@ class App extends React.Component {
       .then(response => {
         const newTasks = [...this.state.tasks];
         newTasks.push(response.data);
-        this.setState({ tasks: newTasks, isLoading: false });
+        this.setState({ tasks: newTasks, isLoading: false, newToDo: "" });
       });
   };
 
@@ -91,27 +113,50 @@ class App extends React.Component {
   };
 
   render() {
-    if (this.state.isLoading) {
-      return <div>Loading...</div>;
-    }
-
     return (
       <div className="container">
-        <h1>To-Do List</h1>
-        <AddButton
-          text={
-            this.state.hideDones
-              ? "Afficher toutes les tâches"
-              : "Masquer ce qui n'est plus à faire"
-          }
-          onClick={() => {
-            this.setState({ hideDones: !this.state.hideDones });
-          }}
-        />
+        <header>
+          <div>
+            <h1>To-Do List</h1>
+          </div>
+          <div className="count">
+            <div>
+              <i className="fas fa-times red-cross" />
+              To do:
+              {!this.state.isLoading && (
+                <span>{this.calculateToDo()}</span>
+              )}{" "}
+            </div>
+            <div>
+              <i className="fas fa-check green-check" />
+              Done :
+              {!this.state.isLoading && <span>{this.calculateDone()}</span>}
+            </div>
+          </div>
+        </header>
+
         <div>
-          <ul>{this.renderToDos()}</ul>
+          {/* Loader just for tasks */}
+          {this.state.isLoading && <div>Loading tasks...</div>}
+          {!this.state.isLoading && <ul>{this.renderToDos()}</ul>}
+          <div>Cliquez sur la tâche pour rayer de la liste</div>
+          <div>
+            Appuyer sur la <i className="fas fa-times" /> pour effacer
+            définitivement de la liste
+          </div>
+          <AddButton
+            className="hide-done"
+            text={
+              this.state.hideDones
+                ? "Afficher toutes les tâches"
+                : "Masquer ce qui n'est plus à faire"
+            }
+            onClick={() => {
+              this.setState({ hideDones: !this.state.hideDones });
+            }}
+          />
           <DoInput
-            placeholder="Nouvelle tâche..."
+            placeholder="Entrez une nouvelle tâche..."
             theme="do-input"
             value={this.state.newToDo}
             nbValue={this.state.newToDoNb}
@@ -124,7 +169,7 @@ class App extends React.Component {
           />
         </div>
         <AddButton
-          text="Ajouter tâche"
+          text="Ajouter une tâche"
           onClick={() => {
             this.addTaskandNumber();
           }}
@@ -133,7 +178,7 @@ class App extends React.Component {
           <DoInput
             visibility="hidden"
             theme="search-input"
-            placeholder="Cherchez une tâche"
+            placeholder="Cherchez une tâche existante..."
             onInput={value => {
               this.setState({
                 trySearch: value
